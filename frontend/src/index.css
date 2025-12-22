@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* (선택) 전역 기본만 살짝 */
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}

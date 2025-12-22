@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+openai
+playwright
+pecab
+kss
+numpy
+beautifulsoup4
+PIL
