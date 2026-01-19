@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# StyleMind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+StyleMind는 **블로그 글의 스타일을 분석**하고,  
+**사용자가 제공한 이미지와 주제**를 바탕으로  
+분석된 스타일을 적용한 **새로운 블로그 포스트를 생성**해주는 AI 어시스턴트 서비스입니다.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 주요 기능
 
-## React Compiler
+### 1. 스타일 분석 (Style Analysis)
+- 블로그 URL 목록을 입력받아 콘텐츠를 크롤링
+- 작성자의 글쓰기 스타일, 문체, 톤앤매너 분석
+- 블로그 스타일 가이드 프롬프트 생성
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. 이미지 분석 (Image Analysis)
+- 업로드된 이미지를 AI가 분석
+- 이미지에 대한 상세 설명 텍스트 생성
 
-## Expanding the ESLint configuration
+### 3. 맞춤형 포스팅 생성 (Blog Generation)
+- 스타일 분석 결과
+- 이미지 설명
+- 사용자가 입력한 주제  
+를 결합하여 최적화된 블로그 포스트 자동 생성
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 기술 스택
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Backend
+- Python 3.14+
+- FastAPI
+- Uvicorn
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### AI / LLM
+- WritingAgent (Custom Agent)
+- StyleAnalyzer
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Crawling
+- BeautifulSoup4
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Utilities
+- asyncio
+- Pydantic
+- Pillow
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 설치 및 실행 방법
+
+### 1. 가상환경 설정 (virtualenv)
+
+```bash
+# 가상환경 생성
+virtualenv venv
+
+# 가상환경 활성화 (Windows)
+# .\venv\Scripts\activate
+
+# 가상환경 활성화 (macOS / Linux)
+source venv/bin/activate
